@@ -1,6 +1,6 @@
 import HeaderDashboard from '@/components/globals/HeaderDashboard'
 import FooterDashboard from '@/components/globals/FooterDashboard'
-import Aside from '@/components/globals/Aside'
+import Aside from '@/components/globals/Aside/Aside'
 import Drawer from '@/components/globals/Drawer'
 
 export default async function TemplateDashboard({
