@@ -1,6 +1,6 @@
 'use client'
 
-import AsideFooter from '@/components/globals/Aside/AsideFooter'
+import { CollapsedFooter, ExpandedFooter } from '@/components/globals/Aside/AsideFooter'
 import LogoAside from '@/components/globals/Aside/AsideLogo'
 import { useAside } from '@/store/useAside'
 import { useSession } from 'next-auth/react'
@@ -35,12 +35,15 @@ export default function Aside() {
         {minimize ? <CollapsedNavLink pathname={pathname} /> : <ExpandedNavLink pathname={pathname} />}
       </nav>
 
-      <AsideFooter
-        minimize={minimize}
-        initials={initials}
-        name={session?.user?.name || 'User'}
-        role={session?.user?.role || 'USER'}
-      />
+      {minimize ? (
+        <CollapsedFooter initials={initials} />
+      ) : (
+        <ExpandedFooter
+          initials={initials}
+          name={session?.user?.name || 'User'}
+          role={session?.user?.role || 'USER'}
+        />
+      )}
     </aside>
   )
 }
