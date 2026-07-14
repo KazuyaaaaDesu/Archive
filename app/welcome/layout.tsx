@@ -1,20 +1,22 @@
-import { Metadata } from "next"
-import { ReactNode } from "react"
-import TemplateMain from "@/templates/Main"
+import { Metadata } from 'next'
+import { ReactNode } from 'react'
+import TemplateDashboard from '@/templates/Dashboard'
+import { getServerSession } from 'next-auth'
+import { redirect } from 'next/navigation'
+import { authOptions } from '@/lib/authOptions'
 
 export const metadata: Metadata = {
-  title: "Welcome",
-  description: "Welcome to Archive"
+  title: 'Welcome',
+  description: 'Welcome to Archive',
 }
 
-export default function WelcomeLayout({
-  children
-}:{
+export default async function WelcomeLayout({
+  children,
+}: {
   children: ReactNode
 }) {
-  return (
-    <TemplateMain>
-      {children}
-    </TemplateMain>
-  )
+  const session = await getServerSession(authOptions)
+  if (!session?.user?.id) redirect('/login')
+
+  return <TemplateDashboard>{children}</TemplateDashboard>
 }
