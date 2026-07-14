@@ -1,7 +1,14 @@
 import { Info, GraduationCap, Users, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/authOptions'
+import { redirect } from 'next/navigation'
 
-export default function WelcomePage() {
+export default async function WelcomePage() {
+  const session = await getServerSession(authOptions)
+
+  if (!session?.user?.id) redirect('/login')
+
   return (
     <div className="bg-[#f4f6ff] h-full flex flex-col items-center justify-center relative overflow-hidden">
       {/* Dot grid background */}
