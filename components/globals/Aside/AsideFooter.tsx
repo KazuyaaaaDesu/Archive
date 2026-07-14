@@ -38,15 +38,15 @@ export function ExpandedFooter({
   role: string
 }) {
   return (
-    <div className="border-t border-[#eceef8] flex flex-col gap-[4px] h-[110px] justify-center px-[8px] py-[10px] shrink-0 w-full">
-      <div className="flex gap-[4px] items-center w-full">
+    <div className="border-t border-[#eceef8] flex flex-col gap-1 h-27.5 justify-center p-2 shrink-0 w-full">
+      <div className="flex gap-1 items-center w-full">
         <div className="flex items-center px-[19px] py-[11px] rounded-[9px] hover:bg-[rgba(112,125,255,0.05)] transition-colors">
           <div className="relative">
             <Bell size={17} className="text-[#5a6382]" />
-            <span className="absolute -top-[3px] -right-[3px] size-[8px] rounded-full bg-[#fe6f6f] border border-[#fafbff]" />
+            <span className="absolute -top-0.75 -right-0.75 size-2 rounded-full bg-[#fe6f6f] border border-[#fafbff]" />
           </div>
         </div>
-        <div className="flex-1 flex gap-[4px] items-center min-w-px pr-[10px]">
+        <div className="flex-1 flex gap-1 items-center min-w-px pr-2.5">
           <span className="flex-1 text-[13.5px] font-medium text-[#5a6382]">
             Notifications
           </span>
@@ -70,7 +70,8 @@ export function ExpandedFooter({
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-px w-[158px]">
+
+        <div className="flex flex-col gap-px w-auto">
           <span className="text-[13px] font-bold text-[#12143a] truncate">
             {name}
           </span>
