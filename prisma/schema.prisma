@@ -24,19 +24,73 @@ model User {
   deletedAt                   DateTime?
   password                    String?
   updatedAt                   DateTime?            @updatedAt
-
+  faculty                     Faculty?
+  student                     Student?
+    
   @@index([email, deletedAt])
 }
 
 model ResetPasswordToken {
-  id                          BigInt   @id(map: "idx_30320_primary") @default(autoincrement())
-  email                       String   @db.VarChar(191)
-  token                       String   @unique(map: "idx_30320_resetpasswordtoken_token_key") @db.VarChar(191)
-  expires                     DateTime @db.Timestamptz(6)
-  created_at                  DateTime @default(now()) @db.Timestamptz(6)
+  id                          BigInt              @id(map: "idx_30320_primary") @default(autoincrement())
+  email                       String              @db.VarChar(191)
+  token                       String              @unique(map: "idx_30320_resetpasswordtoken_token_key") @db.VarChar(191)
+  expires                     DateTime            @db.Timestamptz(6)
+  created_at                  DateTime            @default(now()) @db.Timestamptz(6)
 
   @@unique([email, token], map: "idx_30320_resetpasswordtoken_email_token_key")
 
+}
+
+model Faculty {
+  id                          Int                 @id @default(autoincrement())
+  userId                      Int                 @unique
+  user                        User                @relation(fields: [userId], references: [id])
+  coordinator                 Coordinator?
+  createdAt                   DateTime            @default(now())
+  updatedAt                   DateTime            @updatedAt
+  deletedAt                   DateTime?
+
+  @@index([deletedAt])
+}
+
+model Coordinator {
+  id                          Int                 @id @default(autoincrement())
+  facultyId                   Int                 @unique
+  faculty                     Faculty             @relation(fields: [facultyId], references: [id])
+  sections                    Section[]
+  createdAt                   DateTime            @default(now())
+  updatedAt                   DateTime            @updatedAt
+  deletedAt                   DateTime?
+
+  @@index([deletedAt])
+}
+
+model Section {
+  id                          Int                 @id @default(autoincrement())
+  sectionId                   String
+  coordinatorId               Int
+  coordinator                 Coordinator         @relation(fields: [coordinatorId], references: [id])
+  section                     String
+  yearLevel                   String
+  students                    Student[]
+  createdAt                   DateTime            @default(now())
+  updatedAt                   DateTime            @updatedAt
+  deletedAt                   DateTime?
+
+  @@index([deletedAt])
+}
+
+model Student {
+  id                          Int                 @id @default(autoincrement())
+  userId                      Int?                @unique
+  user                        User?               @relation(fields: [userId], references: [id])
+  sectionId                   Int
+  section                     Section             @relation(fields: [sectionId], references: [id])
+  createdAt                   DateTime            @default(now())
+  updatedAt                   DateTime            @updatedAt
+  deletedAt                   DateTime?
+
+  @@index([deletedAt])
 }
 
 enum Role {

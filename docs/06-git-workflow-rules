@@ -130,24 +130,13 @@ Every commit should clearly describe the change it introduces. We follow a light
 
 ```text
 feat(calendar): add month navigation
-```
 
-### Bug Fix
-
-```text
 fix(auth): prevent redirect loop on login
-```
 
-### Documentation
-
-```text
 docs(readme): add getting started section
-```
 
-### Refactoring
-
-```text
 refactor(sidebar): simplify navigation layout
+
 ```
 
 ---
@@ -190,22 +179,15 @@ when the commit or pull request resolves an issue.
 
 ```text
 feat(calendar): add month navigation
-```
 
-```text
 fix(repository): resolve duplicate upload issue
-```
 
-```text
 docs(project): add Git workflow documentation
-```
 
-```text
 refactor(auth): simplify validation logic
-```
 
-```text
 chore(deps): update React to latest version
+
 ```
 
 ---
