@@ -191,7 +191,7 @@ export default function FormSignup({ className }: { className?: string }) {
             href="/login"
             className="font-medium text-indigo-400 hover:text-indigo-500 transition-colors"
           >
-            Sign Up
+            Sign In
           </Link>
         </div>
       </div>
